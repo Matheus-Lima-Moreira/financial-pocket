@@ -1,0 +1,5 @@
+export enum UserState {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  INVITE_PENDING = 'INVITE_PENDING',
+}

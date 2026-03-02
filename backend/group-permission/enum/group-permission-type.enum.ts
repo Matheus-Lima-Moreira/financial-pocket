@@ -1,0 +1,4 @@
+export enum GROUP_PERMISSION_TYPE {
+  BASE_SYSTEM = 'SYSTEM',
+  CUSTOM = 'CUSTOM',
+}
