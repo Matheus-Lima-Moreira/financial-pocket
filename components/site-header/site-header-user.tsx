@@ -11,12 +11,9 @@ import Link from "next/link";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { LogoutButton } from "./logout-button";
 
-
 type PropsDropMenu = {
   children: React.ReactNode;
 }
-
-
 
 function DropMenuUser({ children }: PropsDropMenu) {
 

@@ -19,7 +19,7 @@ export async function refreshToken(): Promise<void> {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        refreshToken: token.refreshToken,
+        refresh_token: token.refresh_token,
       }),
     });
 
@@ -36,11 +36,11 @@ export async function refreshToken(): Promise<void> {
     const newAccessToken = data.data.access_token;
 
     await setSession({
-      accessToken: newAccessToken,
-      refreshToken: token.refreshToken,
+      access_token: newAccessToken,
+      refresh_token: token.refresh_token,
     });
   } catch {
-    console.error("Erro ao atualizar token");
+    console.error("Error refreshing token");
     return;
   }
 }

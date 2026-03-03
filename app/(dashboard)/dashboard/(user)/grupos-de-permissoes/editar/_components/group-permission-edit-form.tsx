@@ -56,7 +56,6 @@ export default function GroupPermissionEditForm({ actions, groupPermission }: Gr
 
   async function onSaveName() {
     // TODO: Implementar atualização do nome
-    console.log("Salvar nome:", currentName);
     setIsEditingName(false);
   }
 

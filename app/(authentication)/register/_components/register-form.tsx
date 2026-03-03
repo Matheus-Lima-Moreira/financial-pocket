@@ -9,7 +9,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldContent, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { formatPhone } from "@/lib/masks";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -18,6 +17,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+
+const REGISTER_EMAIL_SENT_KEY = "register_email_sent";
 
 export function RegisterForm() {
   const router = useRouter();
@@ -36,31 +37,30 @@ export function RegisterForm() {
   });
 
   const onSubmit = async (data: RegisterSchema) => {
+    setError(null);
 
     const result = await registerAction(data);
 
     if (result.code === StatusCode.SUCCESS) {
-      return router.push("/verificar-conta");
+      router.replace("/register?sent=1");
+      router.refresh();
+      return;
     }
-
-    setError(result.message || "Houve um erro interno no servidor.");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 w-full">
       <div className="space-y-4">
-        {
-          error && (
-            <Alert variant="destructive">
-              <AlertTitle className="flex items-center gap-2"><AlertCircle className="size-4" /> Atenção</AlertTitle>
-              <AlertDescription>
-                <p>
-                  {error}
-                </p>
-              </AlertDescription>
-            </Alert>
-          )
-        }
+        {error && (
+          <Alert variant="destructive">
+            <AlertTitle className="flex items-center gap-2">
+              <AlertCircle className="size-4" /> Atenção
+            </AlertTitle>
+            <AlertDescription>
+              <p>{error}</p>
+            </AlertDescription>
+          </Alert>
+        )}
         <Field>
           <FieldLabel htmlFor="name" className="text-sm sm:text-base">
             Nome da Organização <span className="text-red-500">*</span>
@@ -71,10 +71,10 @@ export function RegisterForm() {
               type="text"
               placeholder="Nome da sua organização"
               className="text-sm sm:text-base"
-              {...register("name")}
-              aria-invalid={!!errors.name}
+              {...register("organization.name")}
+              aria-invalid={!!errors.organization?.name}
             />
-            <FieldError errors={errors.name ? [errors.name] : undefined} />
+            <FieldError errors={errors.organization?.name ? [errors.organization.name] : undefined} />
           </FieldContent>
         </Field>
 
@@ -90,25 +90,25 @@ export function RegisterForm() {
               type="tel"
               placeholder="(11) 98765-4321"
               maxLength={15}
-              value={formatPhone(watch("cellphone") || "")}
+              value={formatPhone(watch("organization.cellphone") || "")}
               onChange={(e) => {
                 const value = e.target.value;
                 const numbersOnly = value.replace(/\D/g, "");
-                setValue("cellphone", numbersOnly.slice(0, 11), {
+                setValue("organization.cellphone", numbersOnly.slice(0, 11), {
                   shouldValidate: true,
                 });
               }}
               onBlur={(e) => {
                 const value = e.target.value;
                 const numbersOnly = value.replace(/\D/g, "");
-                setValue("cellphone", numbersOnly.slice(0, 11), {
+                setValue("organization.cellphone", numbersOnly.slice(0, 11), {
                   shouldValidate: true,
                 });
               }}
-              aria-invalid={!!errors.cellphone}
+              aria-invalid={!!errors.organization?.cellphone}
             />
             <FieldError
-              errors={errors.cellphone ? [errors.cellphone] : undefined}
+              errors={errors.organization?.cellphone ? [errors.organization.cellphone] : undefined}
             />
           </FieldContent>
         </Field>

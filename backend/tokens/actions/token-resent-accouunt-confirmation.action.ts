@@ -4,23 +4,20 @@ import { ReplyDto } from "@/backend/shared/dtos/reply.dto";
 import { ERROR_MESSAGE } from "@/backend/shared/enum/messages/error.message";
 import { StatusCode } from "@/backend/shared/enum/status-code";
 import { request } from "@/backend/shared/helpers/request";
-import { RegisterSchema } from "../schemas/register.schema";
 
-export async function registerAction(input: RegisterSchema): Promise<ReplyDto<null>> {
+export async function tokenResentAccountConfirmationAction(): Promise<ReplyDto<void>> {
   try {
-    const response = await request("/auth/register", {
+    await request("/tokens/resend-account-confirmation", {
       method: "POST",
-      body: JSON.stringify(input),
-      useAuth: false,
     });
   
-    const result: ReplyDto<null> = await response.json() as ReplyDto<null>;
-  
-    return result;
+    return {
+      code: StatusCode.SUCCESS,
+    } as ReplyDto<void>;
   } catch  {
     return {
       code: StatusCode.INTERNAL_SERVER_ERROR,
       message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
-    } as ReplyDto<null>;
+    } as ReplyDto<void>;
   }
 }

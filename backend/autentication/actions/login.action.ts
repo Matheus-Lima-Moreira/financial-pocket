@@ -20,8 +20,8 @@ export async function loginAction(input: LoginSchema): Promise<ReplyDto<Authenti
   
     if(result.code === StatusCode.SUCCESS){
       await setSession({
-        accessToken: result.data.accessToken,
-        refreshToken: result.data.refreshToken,
+        access_token: result.data.access_token,
+        refresh_token: result.data.refresh_token,
       });
     }
   

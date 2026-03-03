@@ -1,2 +1,1 @@
-
 export const SESSION_NAME="NEXTSSID"

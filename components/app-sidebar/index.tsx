@@ -29,12 +29,6 @@ const data: AppSidebarContentProps[] = [
         isActive: true,
       },
       {
-        title: "Obras",
-        url: "/dashboard/obras",
-        icon: IconBuilding,
-        iconFilled: IconBuildingBroadcastTowerFilled,
-      },
-      {
         title: "Usuários",
         url: "/dashboard/usuarios",
         icon: IconUser,
@@ -47,63 +41,10 @@ const data: AppSidebarContentProps[] = [
         iconFilled: IconShieldFilled,
       },
     ],
-  },
-  {
-    title: "Financeiro",
-    items: [
-      {
-        title: "Lançamentos Financeiros",
-        url: "/dashboard/lancamentos-financeiros",
-        icon: IconCoin,
-        iconFilled: IconCoinFilled,
-      },
-      {
-        title: "Folha de Pagamento",
-        url: "/dashboard/folha-de-pagamento",
-        icon: IconFileInvoice,
-        iconFilled: IconFileInvoiceFilled,
-      },
-    ],
-  },
-  {
-    title: "Workforce",
-    items: [
-      {
-        title: "Funcionários",
-        url: "/dashboard/funcionarios",
-        icon: IconCoin,
-        iconFilled: IconCoinFilled,
-      },
-      {
-        title: "Prestadores de Serviço",
-        url: "/dashboard/prestadores-de-servico",
-        icon: IconFileInvoice,
-        iconFilled: IconFileInvoiceFilled,
-      },
-    ],
-  },
-  {
-    title: "Configurações",
-    items: [
-      {
-        title: "Cargos",
-        url: "/dashboard/cargos",
-        icon: IconBriefcase,
-        iconFilled: IconBriefcaseFilled,
-      },
-      {
-        title: "Empresa",
-        url: "/dashboard/empresa",
-        icon: IconBuilding,
-        iconFilled: IconBuildingBridge2Filled,
-      },
-    ],
   }
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
-
   return (
     <Sidebar collapsible="offcanvas" {...props} className="p-0 bg-white border-r border-zinc-300">
       <SidebarHeader className="border-b border-zinc-300 dark:border-zinc-800 p-0 bg-white" style={{ height: "var(--header-height)" }}>

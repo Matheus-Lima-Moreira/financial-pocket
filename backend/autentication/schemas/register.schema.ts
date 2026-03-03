@@ -18,19 +18,13 @@ const userSchema = z.object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
       MESSAGE.authentication.PASSWORD_PATTERN
     ),
-  
-  position: z
-    .string()
-    .min(2, MESSAGE.authentication.POSITION_MIN)
-    .max(100, MESSAGE.authentication.POSITION_MAX),
 });
 
-export const registerSchema = z.object({
+const organizationSchema = z.object({
   name: z
     .string()
     .min(2, MESSAGE.authentication.ORGANIZATION_NAME_MIN)
     .max(200, MESSAGE.authentication.ORGANIZATION_NAME_MAX),
-  
   cellphone: z
     .string()
     .regex(
@@ -38,10 +32,10 @@ export const registerSchema = z.object({
       MESSAGE.authentication.CELLPHONE_FORMAT
     )
     .length(11, MESSAGE.authentication.CELLPHONE_LENGTH),
-  
-  segmentId: z
-    .string()
-    .uuid(MESSAGE.authentication.SEGMENT_ID_UUID),
+});
+
+export const registerSchema = z.object({
+  organization: organizationSchema,
   
   user: userSchema,
   

@@ -7,7 +7,7 @@ import { ForgotPasswordSchema } from "../schemas/forgot-password.schema";
 
 export async function forgotPasswordAction(input: ForgotPasswordSchema): Promise<ReplyDto<void>> {
   try {
-    const response = await request("/tokens/reset-password", {
+    const response = await request("/auth/send-reset-password-email", {
       method: "POST",
       body: JSON.stringify(input),
       useAuth: false,
