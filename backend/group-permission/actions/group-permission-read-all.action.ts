@@ -20,7 +20,7 @@ export async function groupPermissionReadAllAction(filter?: GroupPermissionFilte
     queryParams.append("page", filters.page.toString());
   }
 
-  const response = await request(`/group-permissions?${queryParams.toString()}`, {
+  const response = await request(`/group-permissions/?${queryParams.toString()}`, {
     method: "GET",
   });
 

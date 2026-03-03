@@ -5,11 +5,10 @@ export type UserReplyDto = {
   id: string;
   name: string;
   email: string;
-  position: string;
   active: boolean;
   isPrimary: boolean;
   organizationId: string;
-  avatar: string;
+  avatarUrl: string;
   registerFrom: UserRegisterFrom;
   emailVerified: boolean;
   state: UserState;

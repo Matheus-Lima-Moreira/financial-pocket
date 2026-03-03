@@ -31,7 +31,7 @@ export async function userReadAllAction(filter?: UserFilterDto): Promise<ReplyDt
     queryParams.append("page", filters.page.toString());
   }
 
-  const response = await request(`/users?${queryParams.toString()}`, {
+  const response = await request(`/users/?${queryParams.toString()}`, {
     method: "GET",
   });
 

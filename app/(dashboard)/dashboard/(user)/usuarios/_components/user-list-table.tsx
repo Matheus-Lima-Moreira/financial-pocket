@@ -12,7 +12,6 @@ import { IconEdit, IconPower } from "@tabler/icons-react";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 
-
 function getInitials(name: string): string {
   return name
     .split(" ")
@@ -76,17 +75,6 @@ const columns: ColumnDef<UserReplyDto>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "position",
-    id: "position",
-    header: "Cargo",
-    size: 150,
-    minSize: 350,
-    maxSize: 350,
-    cell: ({ row }) => {
-      return <div className="px-2">{row.original.position || "-"}</div>;
-    },
-  },
-  {
     id: "status",
     header: "Status",
     size: 120,
@@ -134,8 +122,6 @@ const columns: ColumnDef<UserReplyDto>[] = [
   }
 ];
 
-
-
 export default function UserListTable() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<UserReplyDto[]>([]);
@@ -156,7 +142,6 @@ export default function UserListTable() {
     columns,
     getCoreRowModel: getCoreRowModel()
   });
-
 
   async function fetchData(page: number = 1, filter?: UserFilterDto) {
     setIsLoading(true);
@@ -258,7 +243,6 @@ export default function UserListTable() {
   useEffect(() => {
     fetchData(1);
   }, []);
-
 
   return (
     <CustomTable

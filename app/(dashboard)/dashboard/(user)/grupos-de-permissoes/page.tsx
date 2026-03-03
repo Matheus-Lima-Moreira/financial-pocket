@@ -18,7 +18,6 @@ const breadcrumbs: BreadcrumbDto[] = [
   }
 ];
 
-
 export default function GrupoDePermissoesPage() {
   return (
     <PageLayout
